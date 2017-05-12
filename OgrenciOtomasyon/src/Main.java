@@ -35,7 +35,7 @@ public class Main
         System.out.print("Seçim [1-3] :");
         return sc.nextInt();
     }
-    public static int dersProgramıIslemleriMenu(){
+    public static int dersProgramiIslemleriMenu(){
         System.out.println( "1 - Öğrenci Ders Programları\n" +
                             "2 - Raporlama\n");
         System.out.print("Seçim [1-2] :");
@@ -56,14 +56,13 @@ public class Main
                             "(Her Öğrencinin Ayrı Ayrı Ders Programını Göster)\n" +
                             "3 - En Çok Kredi Alan 10 Öğrenci\n" +
                             "4 - Mevcudu En Fazla Olan 10 Ders");
-        System.out.print("Seçim[1-2] :");
+        System.out.print("Seçim[1-4] :");
         return sc.nextInt();
     }
     
     //Ders işlemleri
     
     public static Ders newDers(){
-    
         System.out.println("Dersin Adı:");
         String dersAdi=sc.next();
         System.out.println("Dersin Kredisi");
@@ -216,15 +215,36 @@ public class Main
                     break;
                 case 3:
                     //Ders Programı işlemleri
-                    switch(dersProgramıIslemleriMenu()){
+                    switch(dersProgramiIslemleriMenu()){
                         case 1: 
                             //yeni menü
                             switch(dersProgramAltMenu()){
-                                case 1: break; 
+                                case 1: //Ders Programları Listele
+                                    break; 
+                                case 2: //Öğrenci Arama
+                                    break;
+                                case 3: //Öğrencinin Ders Programından Ders Sil
+                                    break;
+                                case 4: //Öğrencinin Ders Programına Ders Ekle
+                                    break;
+                                default:
+                                    break;
                             }
                             break;
                         case 2: 
-                            //yeni menü
+                            //raporlama
+                            switch(dersProgramAltMenuIki()){
+                                case 1: //Derslere Göre Öğrencileri Listele
+                                    break;
+                                case 2: //Öğrencilere Göre Dersleri Listele
+                                    break;
+                                case 3: //En Çok Kredi Alan 10 Öğrenci
+                                    break;
+                                case 4: //Mevcudu En Fazla Olan 10 Ders
+                                    break;
+                                default:
+                                    break;
+                            }
                             break;
                         default:
                             break;
