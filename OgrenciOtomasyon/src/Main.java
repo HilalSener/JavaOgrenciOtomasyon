@@ -9,7 +9,7 @@ public class Main
     public static ArrayList<Ders> arDers = new ArrayList<>();
     public static ArrayList<Ogrenci> arOgr = new ArrayList<>();
     //Dersler ve o dersi alan oğrencileri tutmak için kullansam mı diye düşnüyorum...
-    public static HashMap<Ders,Ogrenci> hm = new HashMap<>();
+    public static HashMap<String,String> hm = new HashMap<>();
     //Menüler
     public static int firstMenu(){
         System.out.println("..::Seçim::..\n"+
@@ -145,8 +145,57 @@ public class Main
             arOgr.get(index).krediSayisi = sc.nextInt();
         }
     }
-    
-    
+    ///Dersprogramı işlemleri
+    public static void ogrenciDersProgramiIslemleriEkle(){
+        ogrenciListele();
+        System.out.println("Ogrenci İndex :");
+        int index = sc.nextInt();
+        dersListesi();
+        System.out.println("Dersin index :");
+        int dersIndex =sc.nextInt();
+        Ders d = arDers.get(dersIndex);
+        Ogrenci o = arOgr.get(index);
+        String dersAdi=d.dersAdi;
+        o.setDersler(dersAdi);
+    }
+    public static void ogrenciDersProgramiIslemleriDersleriListele(){
+        ogrenciListele();
+        System.out.println("Ogrenci İndex :");
+        int index = sc.nextInt();
+        Ogrenci o = arOgr.get(index);
+            System.out.println("Ogrenci : "+o.ad+"\n"
+                    + "Dersler : "+o.dersler);
+    }
+    public static void ogrenciDersProgramiIslemleriDersSil(){
+        ogrenciListele();
+        System.out.println("Ogrenci İndex :");
+        int index = sc.nextInt();
+        Ogrenci o = arOgr.get(index);
+        
+        for (int i = 0; i < o.dersler.size(); i++) {
+            System.out.println(i+" index - Ders Adı :"+o.dersler.get(i));
+        }
+        System.out.println("Dersin index :");
+        int dersIndex =sc.nextInt();
+        o.dersler.remove(dersIndex);
+    }
+    public static void ogrenciDersProgramiIslemleriDersleriArama(){
+        dersListesi();
+        System.out.println("Dersin index :");
+        int dersIndex =sc.nextInt();
+        Ders d = arDers.get(dersIndex);
+        System.out.println("Ogrenci Ad/Soyad:");
+        String girdi = sc.next();
+        for (int i = 0; i < arOgr.size(); i++) {
+            for (int j = 0; j < arOgr.get(i).dersler.size(); j++) {
+                if (arOgr.get(i).dersler.get(j).equals(d.dersAdi)) {
+                    if (arOgr.get(i).ad.equals(girdi) || arOgr.get(i).soyad.equals(girdi)) {
+                        System.out.println("Ad Soyad: " + arOgr.get(i).ad + " " + arOgr.get(i).soyad);
+                    }
+                }
+            }
+        }
+    }
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -220,12 +269,16 @@ public class Main
                             //yeni menü
                             switch(dersProgramAltMenu()){
                                 case 1: //Ders Programları Listele
+                                    ogrenciDersProgramiIslemleriDersleriListele();
                                     break; 
                                 case 2: //Öğrenci Arama
+                                    ogrenciDersProgramiIslemleriDersleriArama();
                                     break;
                                 case 3: //Öğrencinin Ders Programından Ders Sil
+                                    ogrenciDersProgramiIslemleriDersSil();
                                     break;
                                 case 4: //Öğrencinin Ders Programına Ders Ekle
+                                    ogrenciDersProgramiIslemleriEkle();
                                     break;
                                 default:
                                     break;
